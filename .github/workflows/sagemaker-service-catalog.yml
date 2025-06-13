@@ -89,6 +89,7 @@ jobs:
     - name: Deploy Using SeedFarmer
       run: |
         cd aiops-modules
+        export PRIMARY_REGION=eu-east-1
         source .venv/bin/activate
         seedfarmer apply manifests/mlops-sagemaker/deployment.yaml
 
