@@ -76,29 +76,11 @@ jobs:
         source .venv/bin/activate
         seedfarmer bootstrap toolchain --project ${{ github.event.inputs.deploymentName }} --trusted-principal ${{ github.event.inputs.adminRoleArn }} --as-target
     
-    - name: Create Custom Manifest for SageMaker Templates
-      run: |
-        cd aiops-modules
-        mkdir -p manifests/custom
-        cat > manifests/custom/deployment.yaml << EOF
-        name: ${{ github.event.inputs.deploymentName }}
-        toolchain:
-          region_mappings:
-            - region: ${{ github.event.inputs.awsRegion }}
-              account: ${{ github.event.inputs.awsAccountId }}
-          modules: []
-        groups:
-          - name: sagemaker
-            modules:
-              - name: sagemaker-templates
-                path: modules/sagemaker/sagemaker-templates-service-catalog
-        EOF
-    
     - name: Deploy Using SeedFarmer
       run: |
         cd aiops-modules
         source .venv/bin/activate
-        seedfarmer apply manifests/custom/deployment.yaml
+        seedfarmer apply manifests/mlops-sagemaker/deployment.yaml
 
   destroy_sagemaker_templates:
     runs-on: ubuntu-latest
