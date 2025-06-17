@@ -41,7 +41,7 @@ jobs:
     steps:
     - name: Clone AIOps Modules Repository
       run: |
-        git clone --origin upstream --branch release/1.8.0 https://github.com/awslabs/aiops-modules
+        git clone --origin upstream --branch main https://github.com/hmshashank/aiops-modules.git
         cd aiops-modules
     
     - name: Setup Python Environment
