@@ -90,7 +90,7 @@ jobs:
       run: |
         cd aiops-modules
         source .venv/bin/activate
-        ls
+        export PRIMARY_REGION=eu-east-1
         export PRIMARY_ACCOUNT=${{ github.event.inputs.awsAccountId }}
         seedfarmer apply manifests/mlops-sagemaker/sagemaker-studio-deployment.yaml
 
