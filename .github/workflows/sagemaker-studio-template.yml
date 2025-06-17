@@ -89,8 +89,9 @@ jobs:
     - name: Deploy Using SeedFarmer
       run: |
         cd aiops-modules
-        export PRIMARY_REGION=eu-east-1
         source .venv/bin/activate
+        ls
+        export PRIMARY_ACCOUNT=${{ github.event.inputs.awsAccountId }}
         seedfarmer apply manifests/mlops-sagemaker/sagemaker-studio-deployment.yaml
 
   destroy_sagemaker_templates:
@@ -130,4 +131,5 @@ jobs:
       run: |
         cd aiops-modules
         source .venv/bin/activate
+        export PRIMARY_ACCOUNT=${{ github.event.inputs.awsAccountId }}
         seedfarmer destroy ${{ github.event.inputs.deploymentName }}
