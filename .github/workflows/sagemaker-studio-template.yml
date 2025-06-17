@@ -1,4 +1,4 @@
-name: Deploy SageMaker Templates Service Catalog
+name: Deploy SageMaker Studio Templates
 
 on:
   workflow_dispatch:
@@ -91,7 +91,7 @@ jobs:
         cd aiops-modules
         export PRIMARY_REGION=eu-east-1
         source .venv/bin/activate
-        seedfarmer apply manifests/mlops-sagemaker/sagemaker-template-servicecatalog-deployment.yaml
+        seedfarmer apply manifests/mlops-sagemaker/sagemaker-studio-deployment.yaml
 
   destroy_sagemaker_templates:
     runs-on: ubuntu-latest
